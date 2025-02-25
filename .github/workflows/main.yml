@@ -19,7 +19,7 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore -p:SelfContained=true
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Zip the Build
