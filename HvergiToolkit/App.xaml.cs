@@ -1,4 +1,6 @@
-﻿namespace HvergiToolkit
+﻿using Windows.UI.Popups;
+
+namespace HvergiToolkit
 {
     public partial class App : Application
     {
@@ -9,7 +11,7 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new MainPage()) { Title = "HvergiToolkit" };
+            return new Window(new MainPage()) { Title = "Hvergi Toolkit" };
         }
     }
 }

@@ -17,6 +17,7 @@
         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
             <RadzenSidebarToggle Click="@(() => SidebarExpanded = !SidebarExpanded)" />
             <RadzenLabel Text="Hvergi's Toolkit" />
+            
             <RadzenToggleButton Style="margin-left: auto; margin-right: 1rem;"
                                 Icon=@(IsLight ? "dark_mode" : "light_mode")
                                 Value=@IsLight
@@ -40,26 +41,6 @@
 
 @code
 {
-    bool IsLight { get; set; }
+   
 
-    bool SidebarExpanded { get; set; } = false;
-
-    Task MenuClick(MenuItemEventArgs args)
-    {
-        return InvokeAsync(async () =>
-        {
-            await Task.Delay(200);
-        });
-    }
-
-    void OnChange(bool value)
-    {
-        Preferences.Set("IsLight", value);
-        IsLight = value;
-    }
-
-    protected override void OnInitialized()
-    {
-        IsLight = Preferences.Get("IsLight", true);
-    }
 }

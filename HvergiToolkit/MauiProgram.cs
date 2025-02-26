@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Radzen;
+using Velopack;
+using Windows.UI.Popups;
 
 namespace HvergiToolkit
 {
@@ -23,7 +25,11 @@ namespace HvergiToolkit
     		builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app = builder.Build();
+
+            
+
+            return app;
         }
     }
 }

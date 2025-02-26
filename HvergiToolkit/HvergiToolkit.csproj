@@ -45,6 +45,8 @@
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+        <MauiSplashScreen Include="Resources\Splash\checkupdates.svg" />
+        <MauiSplashScreen Include="Resources\Splash\downloadupdates.svg" />
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -61,10 +63,17 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Splash\checkupdates.svg" />
+      <None Remove="Resources\Splash\downloadupdates.svg" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
         <PackageReference Include="Radzen.Blazor" Version="6.1.0" />
+        <PackageReference Include="Velopack" Version="0.0.1053" />
+        <PackageReference Include="WinUIEx" Version="2.5.1" />
     </ItemGroup>
 
 </Project>

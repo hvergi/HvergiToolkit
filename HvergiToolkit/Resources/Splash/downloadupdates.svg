@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="500"
+   height="220"
+   viewBox="0 0 500 220"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="18.657207"
+       y="216.77898"
+       width="469.98395"
+       height="64.85601"
+       id="rect6" />
+    <rect
+       x="21.322523"
+       y="98.616669"
+       width="462.87643"
+       height="106.61262"
+       id="rect5" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(0,-51.78965)">
+    <rect
+       style="fill:#333333;stroke-width:0.633021"
+       id="rect1"
+       width="500"
+       height="220"
+       x="-5.4119624e-09"
+       y="51.78965" />
+    <rect
+       style="fill:#4d4d4d;stroke:#000000;stroke-width:5.70968;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect2"
+       width="474.29031"
+       height="134.29031"
+       x="12.854842"
+       y="74.644493" />
+    <text
+       xml:space="preserve"
+       id="text4"
+       style="font-size:53.3333px;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect5);fill:#d4aa00;stroke:none;stroke-width:5;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       transform="matrix(1.2231077,0,0,1,-61.669898,5.0356838)"><tspan
+         x="69.740018"
+         y="147.27478"
+         id="tspan1">Hvergi Toolkit</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text5"
+       style="font-size:29.3333px;text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6);fill:#d4aa00;stroke:none;stroke-width:5;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       transform="matrix(1.4140249,0,0,1.1289461,-103.97911,-28.529912)"><tspan
+         x="102.99301"
+         y="243.54096"
+         id="tspan2">Dowloading Updates</tspan></text>
+  </g>
+</svg>
