@@ -66,9 +66,3 @@ jobs:
           vpk download github --repoUrl https://github.com/hvergi/HvergiToolkit
           vpk pack -u HvergiToolkit -v ${{ steps.version.outputs.version }} -p Publish
           vpk upload github --repoUrl https://github.com/hvergi/HvergiToolkit --publish --releaseName "HvergiToolkit v${{ steps.version.outputs.version }}" --tag v${{ steps.version.outputs.version }} --token ${{ secrets.GITHUB_TOKEN }}
-      
-
-
-          # Export version as an output
-          echo "version=$VERSION" >> $env:GITHUB_OUTPUT
-      
