@@ -2,6 +2,9 @@ name: Deploy to GitHub Releases
 on: workflow_dispatch
 permissions:
   contents: write
+env:
+  VERSION: 1.0.0
+
 jobs:
   deploy-to-github-releases:
     runs-on: windows-latest
@@ -40,12 +43,12 @@ jobs:
         uses: vers-one/dotnet-project-version-updater@v1.7
         with:
           file: ".\\HvergiToolkit\\HvergiToolkit.csproj"
-          version: ${{ steps.version.outputs.version }}
+          version: $VERSION
       - name: Environment - Build Number
         uses: myci-actions/export-env-var@1
         with:
           name: BUILD_NUMBER
-          value: ${{ steps.version.outputs.version }}
+          value: $VERSION
       - name: .NET - Setup
         uses: actions/setup-dotnet@v1
         with:
@@ -53,13 +56,13 @@ jobs:
       - name: .NET - Publish
         shell: pwsh
         run: |
-          $version = "${{ steps.version.outputs.version }}"
+          $version = $VERSION
           Write-Output "Version: $version
           dotnet publish HvergiToolkit/HvergiToolkit.csproj -c Release -o ./Publish -r win-x64 --framework net9.0-windows10.0.19041.0 --self-contained true
       - name: Velopack
         shell: pwsh
         run: |
-          $version = "${{ steps.version.outputs.version }}"
+          $version = $VERSION
           Write-Output "Version: $version"
 
           dotnet tool install -g vpk
