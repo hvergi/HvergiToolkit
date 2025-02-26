@@ -37,5 +37,34 @@ jobs:
 
           # Export version as an output
           echo "version=$VERSION" >> $env:GITHUB_OUTPUT
+      - name: Version - Update project files
+        uses: vers-one/dotnet-project-version-updater@v1.7
+        with:
+          file: "src/**/*.csproj"
+          version: ${{ steps.version.outputs.version }}
+      - name: Environment - Build Number
+        uses: myci-actions/export-env-var@1
+        with:
+          name: BUILD_NUMBER
+          value: ${{ steps.version.outputs.version }}
+      - name: .NET - Setup
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 9.x
+      - name: .NET - Publish
+        shell: pwsh
+        run: |
+          $version = "${{ steps.version.outputs.version }}"
+          Write-Output "Version: $version
+          dotnet publish HvergiToolkit/HvergiToolkit.csproj -c Release -o ./Publish -r win-x64 --framework net9.0-windows10.0.19041.0 --self-contained true
+      - name: Velopack
+        shell: pwsh
+        run: |
+          $version = "${{ steps.version.outputs.version }}"
+          Write-Output "Version: $version"
 
+          dotnet tool install -g vpk
+          vpk download github --repoUrl https://github.com/hvergi/HvergiToolkit
+          vpk pack --packId HvergiToolkit --packVersion $version --packDir Publish
+          vpk upload github --repoUrl https://github.com/hvergi/HvergiToolkit --merge --releaseName "HvergiToolkit v$version" --tag v$version
       
