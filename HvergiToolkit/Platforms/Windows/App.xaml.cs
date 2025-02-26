@@ -38,6 +38,7 @@ namespace HvergiToolkit.WinUI
                         fss.Dispose();
                         UM.ApplyUpdatesAndRestart(newVersion);
                     }
+                    await Task.Delay(200);
                 }
                 else
                 {
