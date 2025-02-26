@@ -66,7 +66,7 @@ jobs:
 
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/hvergi/HvergiToolkit
-          vpk pack --packId HvergiToolkit --packVersion $version --packDir Publish
+          vpk pack -u HvergiToolkit -v $version -p Publish
           vpk upload github --repoUrl https://github.com/hvergi/HvergiToolkit --merge --releaseName "HvergiToolkit v$version" --tag v$version
       
 
