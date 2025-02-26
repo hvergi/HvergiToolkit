@@ -55,14 +55,12 @@ jobs:
       - name: .NET - Publish
         shell: pwsh
         run: |
-          $version = ${{ steps.version.outputs.version }}
-          Write-Output "Version: $version"
+          Write-Output "Version: ${{ steps.version.outputs.version }}"
           dotnet publish HvergiToolkit/HvergiToolkit.csproj -c Release -o ./Publish -r win-x64 --framework net9.0-windows10.0.19041.0 --self-contained true
       - name: Velopack
         shell: pwsh
         run: |
-          $version = ${{ steps.version.outputs.version }}
-          Write-Output "Version: $version"
+          Write-Output "Version: ${{ steps.version.outputs.version }}"
 
           dotnet tool install -g vpk
           vpk download github --repoUrl https://github.com/hvergi/HvergiToolkit
