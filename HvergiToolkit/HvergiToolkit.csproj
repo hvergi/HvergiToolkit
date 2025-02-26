@@ -61,16 +61,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="Assets\pngs\checkforupdates.png" />
-      <Content Remove="Assets\pngs\download0.png" />
-      <Content Remove="Assets\pngs\download25.png" />
-      <Content Remove="Assets\pngs\download50.png" />
-      <Content Remove="Assets\pngs\download75.png" />
-      <Content Remove="Assets\pngs\download99.png" />
-      <Content Remove="Assets\pngs\downloadupdates.png" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="Resources\Splash\checkupdates.svg" />
       <None Remove="Resources\Splash\downloadupdates.svg" />
     </ItemGroup>
@@ -85,30 +75,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Assets\pngs\downloadupdates.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="Assets\pngs\checkforupdates.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\pngs\download0.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\pngs\download25.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\pngs\download50.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\pngs\download75.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\pngs\download99.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+      <MauiXaml Update="UpdatePage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
     </ItemGroup>
 
 </Project>

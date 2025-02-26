@@ -1,4 +1,4 @@
-﻿using Windows.UI.Popups;
+﻿using WinUIEx;
 
 namespace HvergiToolkit
 {
@@ -9,9 +9,10 @@ namespace HvergiToolkit
             InitializeComponent();
         }
 
+
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new MainPage()) { Title = "Hvergi Toolkit" };
+            return new Window(new UpdatePage()) { Title = "Updater" };
         }
     }
 }

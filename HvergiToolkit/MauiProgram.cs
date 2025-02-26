@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 using Radzen;
 using Velopack;
 using Windows.UI.Popups;
+using WinUIEx;
 
 namespace HvergiToolkit
 {
@@ -25,10 +27,29 @@ namespace HvergiToolkit
     		builder.Logging.AddDebug();
 #endif
 
-            var app = builder.Build();
+            builder.ConfigureLifecycleEvents(events =>
+            {
+                events.AddWindows(wndLifeCycleBuilder =>
+                {
+                    wndLifeCycleBuilder.OnWindowCreated(window =>
+                    {
+                        if(window.Title == "Hvergi Toolkit")
+                        {
+                            window.CenterOnScreen(1440, 759); //Set size and center on screen using WinUIEx extension method
+                        }
+                        else if(window.Title == "Updater")
+                        {
+                            window.CenterOnScreen(720, 200);
+                            window.SetIsAlwaysOnTop(true);
+                        }
 
-            
 
+                        var manager = WinUIEx.WindowManager.Get(window);
+                        manager.PersistenceId = "MainWindowPersistanceId"; // Remember window position and size across runs
+                    });
+                });
+            });
+            MauiApp app = builder.Build();
             return app;
         }
     }

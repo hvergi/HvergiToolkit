@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Velopack;
 using Velopack.Sources;
 using WinUIEx;
@@ -19,41 +20,12 @@ namespace HvergiToolkit.WinUI
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-        
+
         public App()
         {
             VelopackApp.Build().Run();
-            
-            Task.Run(async () =>
-            {
-                var fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "pngs", "checkforupdates.png"));
-                UpdateManager UM = new UpdateManager(new GithubSource("https://github.com/hvergi/HvergiToolkit/",null,false));
-                if (UM.IsInstalled)
-                {
-                    
-                    var newVersion = UM.CheckForUpdates();
-                    if (newVersion != null)
-                    {
-                        fss.Dispose();
-                        fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "pngs", "downloadupdates.png"));
-                        UM.DownloadUpdates(newVersion);
-                        fss.Dispose();
-                        UM.ApplyUpdatesAndRestart(newVersion);
-                    }
-                    await Task.Delay(200);
-                }
-                else
-                {
-                    await Task.Delay(200);
-                }
-                fss?.Dispose();
-
-            }).Wait();
             this.InitializeComponent();
-           
         }
-
-        
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }
