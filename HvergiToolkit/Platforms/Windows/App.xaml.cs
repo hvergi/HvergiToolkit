@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
+using System;
 using Velopack;
-using Windows.UI.Popups;
+using Velopack.Sources;
 using WinUIEx;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -26,15 +27,19 @@ namespace HvergiToolkit.WinUI
             Task.Run(async () =>
             {
                 var fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "pngs", "checkforupdates.png"));
-                UpdateManager UM = new UpdateManager("https://github.com/hvergi/HvergiToolkit");
+                UpdateManager UM = new UpdateManager(new GithubSource("https://github.com/hvergi/HvergiToolkit/",null,false));
                 if (UM.IsInstalled)
                 {
+                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "installed.txt"), "");
                     var newVersion = UM.CheckForUpdates();
+                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "checked.txt"), "");
                     if (newVersion != null)
                     {
+                        File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "newupdate.txt"), "");
                         fss.Dispose();
+                        
                         fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "pngs", "downloadupdates.png"));
-                        await UM.DownloadUpdatesAsync(newVersion);
+                        UM.DownloadUpdates(newVersion);
                         fss.Dispose();
                         UM.ApplyUpdatesAndRestart(newVersion);
                     }

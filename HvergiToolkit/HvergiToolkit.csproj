@@ -67,6 +67,7 @@
       <Content Remove="Assets\pngs\download50.png" />
       <Content Remove="Assets\pngs\download75.png" />
       <Content Remove="Assets\pngs\download99.png" />
+      <Content Remove="Assets\pngs\downloadupdates.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -81,6 +82,12 @@
         <PackageReference Include="Radzen.Blazor" Version="6.1.0" />
         <PackageReference Include="Velopack" Version="0.0.1053" />
         <PackageReference Include="WinUIEx" Version="2.5.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Assets\pngs\downloadupdates.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
