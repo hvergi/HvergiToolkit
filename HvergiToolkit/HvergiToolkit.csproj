@@ -46,10 +46,8 @@
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
         <MauiSplashScreen Include="Resources\Splash\checkupdates.svg" />
-        <MauiSplashScreen Include="Resources\Splash\downloadupdates.svg" />
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
@@ -60,6 +58,15 @@
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Assets\pngs\checkforupdates.png" />
+      <Content Remove="Assets\pngs\download0.png" />
+      <Content Remove="Assets\pngs\download25.png" />
+      <Content Remove="Assets\pngs\download50.png" />
+      <Content Remove="Assets\pngs\download75.png" />
+      <Content Remove="Assets\pngs\download99.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -74,6 +81,27 @@
         <PackageReference Include="Radzen.Blazor" Version="6.1.0" />
         <PackageReference Include="Velopack" Version="0.0.1053" />
         <PackageReference Include="WinUIEx" Version="2.5.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Assets\pngs\checkforupdates.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Assets\pngs\download0.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Assets\pngs\download25.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Assets\pngs\download50.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Assets\pngs\download75.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Assets\pngs\download99.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

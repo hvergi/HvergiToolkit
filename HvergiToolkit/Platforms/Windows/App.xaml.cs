@@ -14,25 +14,28 @@ namespace HvergiToolkit.WinUI
     /// </summary>
     public partial class App : MauiWinUIApplication
     {
-        private WinUIEx.SimpleSplashScreen fss { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        
         public App()
         {
             VelopackApp.Build().Run();
-
-            fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(Path.GetDirectoryName(typeof(App).Assembly.Location), "splashSplashScreen.scale-100.png"));
+            
             Task.Run(async () =>
             {
-                UpdateManager UM = new UpdateManager("C:/test/");
+                var fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "pngs", "checkforupdates.png"));
+                UpdateManager UM = new UpdateManager("https://github.com/hvergi/HvergiToolkit");
                 if (UM.IsInstalled)
                 {
                     var newVersion = UM.CheckForUpdates();
                     if (newVersion != null)
                     {
-                        UM.DownloadUpdates(newVersion);
+                        fss.Dispose();
+                        fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "pngs", "downloadupdates.png"));
+                        await UM.DownloadUpdatesAsync(newVersion);
+                        fss.Dispose();
                         UM.ApplyUpdatesAndRestart(newVersion);
                     }
                 }
@@ -40,12 +43,14 @@ namespace HvergiToolkit.WinUI
                 {
                     await Task.Delay(200);
                 }
+                fss?.Dispose();
 
             }).Wait();
-            
             this.InitializeComponent();
-            fss.Dispose();
+           
         }
+
+        
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }
