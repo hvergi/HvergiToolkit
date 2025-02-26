@@ -30,14 +30,11 @@ namespace HvergiToolkit.WinUI
                 UpdateManager UM = new UpdateManager(new GithubSource("https://github.com/hvergi/HvergiToolkit/",null,false));
                 if (UM.IsInstalled)
                 {
-                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "installed.txt"), "");
+                    
                     var newVersion = UM.CheckForUpdates();
-                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "checked.txt"), "");
                     if (newVersion != null)
                     {
-                        File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "newupdate.txt"), "");
                         fss.Dispose();
-                        
                         fss = SimpleSplashScreen.ShowSplashScreenImage(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "pngs", "downloadupdates.png"));
                         UM.DownloadUpdates(newVersion);
                         fss.Dispose();
