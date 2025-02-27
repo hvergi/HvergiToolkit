@@ -22,13 +22,15 @@ namespace HvergiToolkit
 
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddRadzenComponents();
+            // Add Personal Services
+            builder.Services.AddSingleton<TitleService>(); //Handles Changing the titleBar
 
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
-            builder.Services.AddSingleton<TitleService>();
+            builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
 
+            //Use WinUIEX to set window Properties 
             builder.ConfigureLifecycleEvents(events =>
             {
                 events.AddWindows(wndLifeCycleBuilder =>

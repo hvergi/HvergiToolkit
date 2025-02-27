@@ -23,7 +23,7 @@ namespace HvergiToolkit.WinUI
 
         public App()
         {
-            VelopackApp.Build().Run();
+            VelopackApp.Build().Run(); //setup valopack, this must be done asap.
             this.InitializeComponent();
         }
 

@@ -8,7 +8,7 @@ namespace HvergiToolkit.Pages;
 
 public partial class UpdatePage : ContentPage
 {
-	private string updatePercent = string.Empty;
+	private string updatePercent = string.Empty; 
 	public string UpdatePercent {
 		get { return updatePercent; } 
 		set{
@@ -53,7 +53,7 @@ public partial class UpdatePage : ContentPage
 				await DownloadUpdates();
             }
         }
-		await Task.Delay(1000);
+		await Task.Delay(1000); //Delay added to allow the update page to fully load, so it can be properly closed.
         App.Current?.OpenWindow(new Window(new MainPage()) { Title = "Hvergi Toolkit" });
 		App.Current?.CloseWindow(this.Window);
 

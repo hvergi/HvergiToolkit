@@ -8,7 +8,7 @@ namespace HvergiToolkit.Services;
 
 public class TitleService
 {
-    public event EventHandler<String>? TitleChanged;
+    public event EventHandler<String>? TitleChanged; 
 
     
     protected virtual void OnTitleChanged(String title)
@@ -20,6 +20,8 @@ public class TitleService
         }
     }
 
+    
+    //Called when anypage whishs to change the titlebar title
     public void ChangeTitle(String title)
     {
         OnTitleChanged(title);
