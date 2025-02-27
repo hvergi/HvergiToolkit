@@ -78,12 +78,15 @@ public class FolderService
         if (!Directory.Exists(HTConstants.AppDataFolder))
         {
             Directory.CreateDirectory(HTConstants.AppDataFolder);
-            SetupSteamPath(AttemptFindSteam());
-            SetupOnlinePath(AttemptFindOnline());
-            SaveFolders();
+        }
+        if (File.Exists(FolderFile))
+        {
+            LoadFolders();
             return;
         }
-        LoadFolders();
+        SetupSteamPath(AttemptFindSteam());
+        SetupOnlinePath(AttemptFindOnline());
+        SaveFolders();
     }
 
     private void SaveFolders()
@@ -104,7 +107,7 @@ public class FolderService
     }
 
 
-    private string AttemptFindSteam()
+    public string AttemptFindSteam()
     {
         RegistryKey? key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Valve\Steam");
         if (key == null)
@@ -132,7 +135,7 @@ public class FolderService
                 foreach (string s in tmp)
                 {
                     if (String.IsNullOrWhiteSpace(s) || s.Contains("path")) { continue; }
-                    result.Add(s);
+                    result.Add(s.Replace("\\\\","\\"));
                 }
             }
         }
@@ -177,7 +180,7 @@ public class FolderService
         return String.Empty;
     }
 
-    private string AttemptFindOnline()
+    public string AttemptFindOnline()
     {
 
         RegistryKey? key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\JavaSoft\Prefs\com\wurmonline\client");

@@ -17,6 +17,11 @@ public partial class FolderPaths
         Folders.SetupSteamPath(path);
         StateHasChanged();
     }
+    void AutoSteam()
+    {
+        Folders.SetupSteamPath(Folders.AttemptFindSteam());
+        StateHasChanged();
+    }
 
     async void SetupWurm()
     {
@@ -24,6 +29,12 @@ public partial class FolderPaths
         Folders.SetupOnlinePath(path);
         StateHasChanged();
     }
+    void AutoWurm()
+    {
+        Folders.SetupOnlinePath(Folders.AttemptFindOnline());
+        StateHasChanged();
+    }
+
 
     protected override void OnInitialized()
     {
