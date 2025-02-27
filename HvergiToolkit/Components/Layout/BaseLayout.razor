@@ -1,0 +1,36 @@
+﻿@using HvergiToolkit.Services
+@inherits LayoutComponentBase
+@inject TitleService titleservice;
+
+<RadzenComponents />
+<HeadContent>
+    @if (IsLight)
+    {
+        <link rel="stylesheet" href="_content/Radzen.Blazor/css/software.css">
+    }
+    else
+    {
+        <link rel="stylesheet" href="_content/Radzen.Blazor/css/software-dark.css">
+    }
+</HeadContent>
+
+<RadzenLayout>
+    <RadzenHeader>
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="20">
+            <RadzenText TextStyle="TextStyle.DisplayH3">Hvergi's Toolkit</RadzenText>
+            <RadzenText TextStyle="TextStyle.DisplayH4">@Subtitle</RadzenText>
+
+            <RadzenToggleButton Style="margin-left: auto; margin-right: 1rem;"
+                                Icon=@(IsLight ? "dark_mode" : "light_mode")
+                                Value=@IsLight
+                                Variant=Variant.Text ButtonStyle=ButtonStyle.Base ToggleButtonStyle=ButtonStyle.Base ToggleShade=Shade.Default
+                                Change=@OnChange />
+        </RadzenStack>
+    </RadzenHeader>
+    
+    @Body
+    
+    <RadzenFooter>
+        © @DateTime.Now.Year
+    </RadzenFooter>
+</RadzenLayout>

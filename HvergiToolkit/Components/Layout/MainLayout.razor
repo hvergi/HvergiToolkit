@@ -1,46 +1,15 @@
-﻿@inherits LayoutComponentBase
-<RadzenComponents />
+﻿@using HvergiToolkit.Services
+@inherits LayoutComponentBase
+@layout BaseLayout
+@inject TitleService titleservice;
 
-<HeadContent>
-    @if (IsLight)
-    {
-        <link rel="stylesheet" href="_content/Radzen.Blazor/css/software.css">
-    }
-    else
-    {
-        <link rel="stylesheet" href="_content/Radzen.Blazor/css/software-dark.css">
-    }
-</HeadContent>
 
-<RadzenLayout>
-    <RadzenHeader>
-        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
-            <RadzenSidebarToggle Click="@(() => SidebarExpanded = !SidebarExpanded)" />
-            <RadzenLabel Text="Hvergi's Toolkit" />
-            
-            <RadzenToggleButton Style="margin-left: auto; margin-right: 1rem;"
-                                Icon=@(IsLight ? "dark_mode" : "light_mode")
-                                Value=@IsLight
-                                Variant=Variant.Text ButtonStyle=ButtonStyle.Base ToggleButtonStyle=ButtonStyle.Base ToggleShade=Shade.Default
-                                Change=@OnChange />
-        </RadzenStack>
-    </RadzenHeader>
-    <RadzenSidebar Responsive="false" Style="width: max-content">
-        <RadzenPanelMenu Match="NavLinkMatch.Prefix" Click=@MenuClick DisplayStyle="@(SidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
-            <RadzenPanelMenuItem Text="Home" Icon="home" Path="/" />
-            
-        </RadzenPanelMenu>
-    </RadzenSidebar>
-    <RadzenBody>
-        @Body
-    </RadzenBody>
-    <RadzenFooter>
-        © @DateTime.Now.Year
-    </RadzenFooter>
-</RadzenLayout>
+<RadzenSidebar Responsive="false" Style="width: max-content">
+    <RadzenPanelMenu Match="NavLinkMatch.Prefix" DisplayStyle="MenuItemDisplayStyle.IconAndText" ShowArrow="true">
+        <RadzenPanelMenuItem Text="Home" Icon="home" Path="/" />
 
-@code
-{
-   
-
-}
+    </RadzenPanelMenu>
+</RadzenSidebar>
+<RadzenBody>
+    @Body
+</RadzenBody>

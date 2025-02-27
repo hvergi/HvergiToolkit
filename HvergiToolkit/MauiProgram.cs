@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using HvergiToolkit.Services;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Radzen;
 using Velopack;
@@ -24,6 +25,7 @@ namespace HvergiToolkit
 
 #if DEBUG
     		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddSingleton<TitleService>();
     		builder.Logging.AddDebug();
 #endif
 
