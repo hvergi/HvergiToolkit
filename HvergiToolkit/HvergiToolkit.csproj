@@ -75,6 +75,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <MauiXaml Update="Pages\SkillTrackerPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="Pages\UpdatePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>

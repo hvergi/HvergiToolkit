@@ -9,7 +9,7 @@ public partial class Home
 
     private void Open()
     {
-        var window = new Window(new MainPage()) { Title = "New Popup" };
+        var window = new Window(new SkillTrackerPage()) { Title = "New Popup" };
         window.Height = 900;
         App.Current?.OpenWindow(window);
         Height = window.Height;

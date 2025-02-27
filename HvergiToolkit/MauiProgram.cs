@@ -23,7 +23,7 @@ namespace HvergiToolkit
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddRadzenComponents();
             // Add Personal Services
-            builder.Services.AddSingleton<TitleService>(); //Handles Changing the titleBar
+            builder.Services.AddScoped<TitleService>(); //Handles Changing the titleBar (scopped so new windows make thier own)
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
