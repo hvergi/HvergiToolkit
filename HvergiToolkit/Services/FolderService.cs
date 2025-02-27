@@ -1,6 +1,7 @@
 ﻿using HvergiToolkit.Data;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,12 +27,15 @@ public class FolderService
 
     private bool isFirstLuanch = true;
 
+    private readonly string FolderFile = Path.Combine(HTConstants.AppDataFolder, "GamePaths.sav");
+
     public void SetupOnlinePath(string path)
     {
         PathData pathData = isPathValid(path);
         IsWurmOnlinePathVaild = pathData.isPathValid;
         OnlineStatus = pathData.message;
         WurmOnlinePath = pathData.isPathValid ? path : string.Empty;
+        if(pathData.isPathValid) { SaveFolders(); }
     }
 
     public void SetupSteamPath(string path)
@@ -40,6 +44,7 @@ public class FolderService
         IsWurmSteamPathVaild = pathData.isPathValid;
         SteamStatus = pathData.message;
         WurmSteamPath = pathData.isPathValid ? path : string.Empty;
+        if (pathData.isPathValid) { SaveFolders(); }
     }
 
     private PathData isPathValid(string path)
@@ -68,24 +73,36 @@ public class FolderService
 
     public void Init()
     {
-        SetupSteamPath(AttemptFindSteam());
-        SetupOnlinePath(AttemptFindOnline());
-
         if (!isFirstLuanch) { return; }
         isFirstLuanch = false;
         if (!Directory.Exists(HTConstants.AppDataFolder))
         {
             Directory.CreateDirectory(HTConstants.AppDataFolder);
             SetupSteamPath(AttemptFindSteam());
-            
-            
+            SetupOnlinePath(AttemptFindOnline());
+            SaveFolders();
+            return;
         }
-        
-
-        //SetupOnlinePath(WurmOnlinePath);
-        //SetupSteamPath(WurmSteamPath);
-
+        LoadFolders();
     }
+
+    private void SaveFolders()
+    {
+        SaveData saveData = new SaveData();
+        saveData.Steam = WurmSteamPath;
+        saveData.Online = WurmOnlinePath;
+        File.WriteAllText(FolderFile, JsonConvert.SerializeObject(saveData));
+    }
+    private void LoadFolders()
+    {
+        if (!File.Exists(FolderFile)){ return; }
+        string data = File.ReadAllText(FolderFile);
+        if(data  == null || data.Length==0) { return; }
+        SaveData saveData = JsonConvert.DeserializeObject<SaveData>(data);
+        SetupOnlinePath(saveData.Online);
+        SetupSteamPath(saveData.Steam);
+    }
+
 
     private string AttemptFindSteam()
     {
@@ -294,6 +311,12 @@ public class FolderService
     {
         public string message;
         public bool isPathValid;
+    }
+
+    private struct SaveData
+    {
+        public string Online;
+        public string Steam;
     }
 
 }
