@@ -14,7 +14,12 @@ public class DirectoryPicker : IDirectoryPicker
     {
         var folderPicker = new FolderPicker();
         folderPicker.FileTypeFilter.Add("*");
-        var hwnd = ((MauiWinUIWindow)App.Current.Windows[0].Handler.PlatformView).WindowHandle;
+        var tmp = App.Current?.Windows[0].Handler.PlatformView;
+        if(tmp == null)
+        {
+            return string.Empty;
+        }
+        var hwnd = ((MauiWinUIWindow)tmp).WindowHandle;
         WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, hwnd);
         var result = folderPicker.PickSingleFolderAsync();
         await result;

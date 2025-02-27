@@ -6,6 +6,7 @@
              xmlns:blazorweb="clr-namespace:Microsoft.AspNetCore.Components.Web;assembly=Microsoft.AspNetCore.Components.Web"
              BackgroundColor="DarkGray"
              BindingContext="{x:Reference this}"
+             x:DataType="local:UpdatePage"
              x:Name="this"
              x:Class="HvergiToolkit.Pages.UpdatePage">
 
