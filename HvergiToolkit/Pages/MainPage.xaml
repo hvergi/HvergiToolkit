@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:HvergiToolkit"
+             xmlns:local="clr-namespace:HvergiToolkit.Pages"
+             xmlns:core="clr-namespace:HvergiToolkit"
              xmlns:blazorweb="clr-namespace:Microsoft.AspNetCore.Components.Web;assembly=Microsoft.AspNetCore.Components.Web"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
-             x:Class="HvergiToolkit.MainPage">
+             x:Class="HvergiToolkit.Pages.MainPage">
 
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
-            <RootComponent Selector="#app" ComponentType="{x:Type local:Components.Routes}" />
+            <RootComponent Selector="#app" ComponentType="{x:Type core:Components.Routes}" />
             <RootComponent ComponentType="{x:Type blazorweb:HeadOutlet}" Selector="#testlink-head::after" />
         </BlazorWebView.RootComponents>
     </BlazorWebView>

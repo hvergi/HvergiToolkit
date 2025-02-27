@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:HvergiToolkit;assembly=HvergiToolkit"
+             xmlns:local="clr-namespace:HvergiToolkit.Pages"
              xmlns:blazorweb="clr-namespace:Microsoft.AspNetCore.Components.Web;assembly=Microsoft.AspNetCore.Components.Web"
              BackgroundColor="DarkGray"
-             BindingContext="UpdatePage"
+             BindingContext="{x:Reference this}"
              x:Name="this"
-             x:Class="HvergiToolkit.UpdatePage">
+             x:Class="HvergiToolkit.Pages.UpdatePage">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -26,13 +26,13 @@
                Grid.Row="1"
                FontSize="Title"
                HorizontalOptions="CenterAndExpand"/>
-        <Label Text="{Binding  Status,Source={x:Reference this}}"
+        <Label Text="{Binding  Status}"
                Grid.Column="1"
                Grid.Row="2"
                FontSize="Subtitle"
                HorizontalOptions="CenterAndExpand"/>
         <Label
-               Text="{Binding  UpdatePercent,Source={x:Reference this}}"
+               Text="{Binding  UpdatePercent}"
                Grid.Column="1"
                Grid.Row="3"
                FontSize="Subtitle"

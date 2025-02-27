@@ -75,7 +75,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="UpdatePage.xaml">
+      <MauiXaml Update="Pages\UpdatePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>

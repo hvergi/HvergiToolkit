@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HvergiToolkit.Pages;
 
-namespace HvergiToolkit.Components.Pages
+namespace HvergiToolkit.Components.Pages;
+
+public partial class Home
 {
-    public partial class Home
+    double Height { get; set; }
+    double Width { get; set; }
+
+    private void Open()
     {
-        double Height { get; set; }
-        double Width { get; set; }
+        var window = new Window(new MainPage()) { Title = "New Popup" };
+        window.Height = 900;
+        App.Current?.OpenWindow(window);
+        Height = window.Height;
+        Width = window.Width;
 
-        private void Open()
-        {
-            var window = new Window(new MainPage()) { Title = "New Popup" };
-            window.Height = 900;
-            App.Current?.OpenWindow(window);
-            Height = window.Height;
-            Width = window.Width;
-
-        }
     }
 }

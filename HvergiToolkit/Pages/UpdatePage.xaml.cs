@@ -2,8 +2,9 @@ using Microsoft.UI.Composition;
 using System.ComponentModel;
 using Velopack;
 using Velopack.Sources;
+using HvergiToolkit;
 
-namespace HvergiToolkit;
+namespace HvergiToolkit.Pages;
 
 public partial class UpdatePage : ContentPage
 {
