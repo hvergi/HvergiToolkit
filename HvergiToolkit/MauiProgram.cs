@@ -1,4 +1,6 @@
-﻿using HvergiToolkit.Services;
+﻿using HvergiToolkit.Interfaces;
+using HvergiToolkit.Platforms.Windows;
+using HvergiToolkit.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using Radzen;
@@ -24,6 +26,10 @@ namespace HvergiToolkit
             builder.Services.AddRadzenComponents();
             // Add Personal Services
             builder.Services.AddScoped<TitleService>(); //Handles Changing the titleBar (scopped so new windows make thier own)
+            builder.Services.AddSingleton<FolderService>();
+#if WINDOWS
+            builder.Services.AddTransient<IDirectoryPicker, DirectoryPicker>();
+#endif
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();

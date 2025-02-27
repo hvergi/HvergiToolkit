@@ -1,0 +1,46 @@
+﻿@page "/Folder"
+@using HvergiToolkit.Interfaces
+@using HvergiToolkit.Services
+@inject FolderService Folders
+@inject IDirectoryPicker DPicker
+
+<h3>FolderPaths</h3>
+<RadzenStack Orientation="Orientation.Horizontal" class="rz-border-radius-6 rz-border-black rz-pt-2 rz-px-3 rz-background-color-primary">
+    @if (Folders.IsWurmOnlinePathVaild)
+    {
+        <RadzenIcon Icon="check_box" IconColor="@Colors.Success" />
+    }else{
+        <RadzenIcon Icon="disabled_by_default" IconColor="@Colors.Danger"/>
+    }
+    <RadzenText>
+        <strong>Wurm Online Data Path: </strong>
+    </RadzenText>
+    <RadzenText TextStyle="TextStyle.Body1">
+        @if (Folders.IsWurmOnlinePathVaild)
+        {
+            @Folders.WurmOnlinePath
+        }
+        else
+        {
+            @Folders.OnlineStatus
+        }
+    </RadzenText>
+</RadzenStack>
+
+<RadzenButton Click="SetupWurm" ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Large" Style="width:100%" class="rz-mb-3">Setup Wurm Folder Path</RadzenButton>
+
+<RadzenStack Orientation="Orientation.Horizontal" class="rz-border-radius-6 rz-border-black rz-pt-2 rz-px-3 rz-background-color-primary">
+    @if (Folders.IsWurmSteamPathVaild)
+    {
+        <RadzenIcon Icon="check_box" IconColor="@Colors.Success" />
+    }else{
+        <RadzenIcon Icon="disabled_by_default" IconColor="@Colors.Danger"/>
+    }
+    <RadzenText>
+        <strong>Wurm Steam Data Path: </strong>
+    </RadzenText>
+    <RadzenText TextStyle="TextStyle.Body1">
+        @if (Folders.IsWurmSteamPathVaild){ @Folders.WurmSteamPath}else{ @Folders.SteamStatus}
+    </RadzenText>
+</RadzenStack>
+<RadzenButton Click="SetupSteam" ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Large" Style="width:100%" class="rz-mb-3">Setup Steam Folder Path</RadzenButton>
