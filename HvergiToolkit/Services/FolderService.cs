@@ -23,11 +23,27 @@ public class FolderService
 
     public bool IsWurmOnlinePathVaild { get; private set; } = false;
     public bool IsWurmSteamPathVaild { get; private set; } = false ;
-    public bool IsAtleastOnePathValid { get { return IsWurmSteamPathVaild || IsWurmOnlinePathVaild; } }
+    public bool IsAtleastOnePathValid { get { return (IsWurmSteamPathVaild || IsWurmOnlinePathVaild); } }
 
     private bool isFirstLuanch = true;
 
     private readonly string FolderFile = Path.Combine(HTConstants.AppDataFolder, "GamePaths.sav");
+
+    public FolderService()
+    {
+        if (!Directory.Exists(HTConstants.AppDataFolder))
+        {
+            Directory.CreateDirectory(HTConstants.AppDataFolder);
+        }
+        if (File.Exists(FolderFile))
+        {
+            LoadFolders();
+            return;
+        }
+        SetupSteamPath(AttemptFindSteam());
+        SetupOnlinePath(AttemptFindOnline());
+        SaveFolders();
+    }
 
     public void SetupOnlinePath(string path)
     {
@@ -69,24 +85,6 @@ public class FolderService
             pathData.isPathValid = true;
         }
         return pathData;
-    }
-
-    public void Init()
-    {
-        if (!isFirstLuanch) { return; }
-        isFirstLuanch = false;
-        if (!Directory.Exists(HTConstants.AppDataFolder))
-        {
-            Directory.CreateDirectory(HTConstants.AppDataFolder);
-        }
-        if (File.Exists(FolderFile))
-        {
-            LoadFolders();
-            return;
-        }
-        SetupSteamPath(AttemptFindSteam());
-        SetupOnlinePath(AttemptFindOnline());
-        SaveFolders();
     }
 
     private void SaveFolders()

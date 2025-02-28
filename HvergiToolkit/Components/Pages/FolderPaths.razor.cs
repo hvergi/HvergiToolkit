@@ -35,10 +35,4 @@ public partial class FolderPaths
         StateHasChanged();
     }
 
-
-    protected override void OnInitialized()
-    {
-        Folders.Init();
-    }
-
 }

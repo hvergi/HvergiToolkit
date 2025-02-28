@@ -1,0 +1,8 @@
+﻿@page "/Players"
+@inject FolderService Folders
+<RadzenText TextStyle="TextStyle.H5">Wurm Players</RadzenText>
+@if(!Folders.IsAtleastOnePathValid){
+    <RadzenText TextStyle="TextStyle.H2">You Must Setup Atleast 1 Wurm Folder.</RadzenText>
+}else{
+
+}
