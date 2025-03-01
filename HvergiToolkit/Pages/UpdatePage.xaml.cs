@@ -35,9 +35,9 @@ public partial class UpdatePage : ContentPage
 	{
 		UpdatePercent = "";
 		//Local Update testing
-		updateManager = new UpdateManager("C:\\source\\repos\\HvergiToolkit\\Releases");
+		//updateManager = new UpdateManager("C:\\source\\repos\\HvergiToolkit\\Releases");
 		
-		//updateManager = new UpdateManager(new GithubSource("https://github.com/hvergi/HvergiToolkit/", null, false));
+		updateManager = new UpdateManager(new GithubSource("https://github.com/hvergi/HvergiToolkit/", null, false));
         InitializeComponent();
         CheckForUpdates();
     }
