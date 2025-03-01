@@ -27,6 +27,7 @@ namespace HvergiToolkit
             // Add Personal Services
             builder.Services.AddScoped<TitleService>(); //Handles Changing the titleBar (scopped so new windows make thier own)
             builder.Services.AddSingleton<FolderService>();
+            builder.Services.AddSingleton<PlayerService>();
 #if WINDOWS
             builder.Services.AddTransient<IDirectoryPicker, DirectoryPicker>();
 #endif

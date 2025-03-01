@@ -1,8 +1,50 @@
 ﻿@page "/Players"
+@using HvergiToolkit.Models
 @inject FolderService Folders
-<RadzenText TextStyle="TextStyle.H5">Wurm Players</RadzenText>
+@inject PlayerService PlayersData
+
+<RadzenText TextStyle="TextStyle.H4">Wurm Players</RadzenText>
 @if(!Folders.IsAtleastOnePathValid){
     <RadzenText TextStyle="TextStyle.H2">You Must Setup Atleast 1 Wurm Folder.</RadzenText>
 }else{
-
+    <RadzenRow class="rz-background-color-primary-darker rz-p-1">
+        <RadzenColumn>
+            <RadzenText TextStyle="TextStyle.H5">Wurm Online</RadzenText>
+            @if(!Folders.IsWurmOnlinePathVaild){
+                <RadzenText TextStyle="TextStyle.H6" class="rz-color-danger">Folder Not Setup</RadzenText>
+            }else{
+                @if(PlayersData.WurmPlayerModels.Count == 0)
+                {
+                    <RadzenText TextStyle="TextStyle.H6" class="rz-color-danger">No Players Found</RadzenText>
+                }else
+                {
+                    @foreach (PlayerModel playerModel in PlayersData.WurmPlayerModels)
+                    {
+                        <RadzenText>@playerModel.PlayerName</RadzenText>
+                    }
+                }
+            }
+        </RadzenColumn>
+        <RadzenColumn>
+            <RadzenText TextStyle="TextStyle.H5">Steam</RadzenText>
+            @if (!Folders.IsWurmSteamPathVaild)
+            {
+                <RadzenText TextStyle="TextStyle.H6" class="rz-color-danger">Folder Not Setup</RadzenText>
+            }
+            else
+            {
+                @if (PlayersData.SteamPlayerModels.Count == 0)
+                {
+                    <RadzenText TextStyle="TextStyle.H6" class="rz-color-danger">No Players Found</RadzenText>
+                    
+                }
+                else
+                {
+                    @foreach(PlayerModel playerModel in PlayersData.SteamPlayerModels){
+                        <RadzenText>@playerModel.PlayerName</RadzenText>
+                    }
+                }
+            }
+        </RadzenColumn>
+    </RadzenRow>
 }

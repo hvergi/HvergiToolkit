@@ -25,7 +25,7 @@ public class FolderService
     public bool IsWurmSteamPathVaild { get; private set; } = false ;
     public bool IsAtleastOnePathValid { get { return (IsWurmSteamPathVaild || IsWurmOnlinePathVaild); } }
 
-    private bool isFirstLuanch = true;
+    public event EventHandler? FoldersChanged;
 
     private readonly string FolderFile = Path.Combine(HTConstants.AppDataFolder, "GamePaths.sav");
 
@@ -52,6 +52,8 @@ public class FolderService
         OnlineStatus = pathData.message;
         WurmOnlinePath = pathData.isPathValid ? path : string.Empty;
         if(pathData.isPathValid) { SaveFolders(); }
+        FoldersChanged?.Invoke(this, EventArgs.Empty);
+        
     }
 
     public void SetupSteamPath(string path)
@@ -61,6 +63,7 @@ public class FolderService
         SteamStatus = pathData.message;
         WurmSteamPath = pathData.isPathValid ? path : string.Empty;
         if (pathData.isPathValid) { SaveFolders(); }
+        FoldersChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private PathData isPathValid(string path)
