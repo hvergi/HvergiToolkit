@@ -18,10 +18,14 @@
                     <RadzenText TextStyle="TextStyle.H6" class="rz-color-danger">No Players Found</RadzenText>
                 }else
                 {
-                    @foreach (PlayerModel playerModel in PlayersData.WurmPlayerModels)
-                    {
-                        <RadzenText>@playerModel.PlayerName</RadzenText>
-                    }
+                    <RadzenStack Orientation="Orientation.Vertical" Gap="4px">
+                        @foreach (PlayerModel playerModel in PlayersData.WurmPlayerModels)
+                        {
+                            <RadzenCard>
+                                <RadzenText>@playerModel.PlayerName</RadzenText>
+                            </RadzenCard>
+                        }
+                    </RadzenStack>
                 }
             }
         </RadzenColumn>
@@ -40,9 +44,14 @@
                 }
                 else
                 {
-                    @foreach(PlayerModel playerModel in PlayersData.SteamPlayerModels){
-                        <RadzenText>@playerModel.PlayerName</RadzenText>
+                    <RadzenStack Orientation="Orientation.Vertical" Gap="4px">
+                    @foreach(PlayerModel playerModel in PlayersData.SteamPlayerModels)
+                    {
+                        <RadzenCard>
+                            <RadzenText>@playerModel.PlayerName</RadzenText>
+                        </RadzenCard>
                     }
+                    </RadzenStack>
                 }
             }
         </RadzenColumn>
