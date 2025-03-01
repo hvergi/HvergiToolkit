@@ -5,7 +5,7 @@
    viewBox="0 0 456 456"
    version="1.1"
    xml:space="preserve"
-   style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+   style="clip-rule:evenodd;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"
    id="svg4"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><defs
@@ -14,18 +14,13 @@
     
     
     
-<g
-   id="layer1"><text
-     xml:space="preserve"
-     style="font-size:85.3333px;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffffff;stroke-width:5;stroke-linejoin:round;paint-order:fill markers stroke"
-     x="230.51779"
-     y="238.35092"
-     id="text9"><tspan
-       id="tspan9"
-       x="230.51779"
-       y="238.35092"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:85.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff">HVERGI </tspan><tspan
-       x="230.51779"
-       y="345.01755"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:85.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff"
-       id="tspan10">TOOLKIT</tspan></text></g></svg>
+<text
+   xml:space="preserve"
+   style="font-size:192px;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;clip-rule:evenodd;fill:#ffcc00;fill-rule:evenodd;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:2;paint-order:fill markers stroke"
+   x="221.32812"
+   y="295.59375"
+   id="text9"><tspan
+     x="221.32812"
+     y="295.59375"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffcc00"
+     id="tspan10">HVT</tspan></text></svg>
