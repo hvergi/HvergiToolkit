@@ -1,5 +1,9 @@
 name: Deploy to GitHub Releases
-on: workflow_dispatch
+on:   
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
