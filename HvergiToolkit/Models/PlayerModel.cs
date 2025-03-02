@@ -11,6 +11,8 @@ namespace HvergiToolkit.Models
         public string PlayerPath { get; set; }
         public string PlayerName { get; set; }
 
+        public int PlayerId { get; set; } = 0;
+
         public PlayerModel(string playerPath)
         {
             PlayerPath = playerPath;

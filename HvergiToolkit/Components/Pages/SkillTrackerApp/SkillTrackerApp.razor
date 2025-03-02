@@ -1,6 +1,82 @@
 ﻿
 @page "/Apps/SkillTracker"
+@using HvergiToolkit.Models
+@inject PlayerService PlayersData
 
-<h3>SkillTracker</h3>
+<RadzenRow>
+
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn Style="flex:3">
+        <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
+            <RadzenLabel Text="Select Player" />
+            <RadzenDropDown TValue="string" Data="@skillTrackerList" Style="flex:1" />
+            <RadzenLabel Text="Primary Skill" />
+            <RadzenDropDown TValue="string" Data="@skillTrackerList" Style="flex:1" />
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
+            <RadzenLabel Text="Action Set" />
+            <RadzenDropDown TValue="string" Style="flex:2"/>
+            <RadzenButton Text="Edit ActionSets" Style="flex:1"/>
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
+            <RadzenButton Text="Start" Style="flex:auto" Click="add"/>
+            <RadzenButton Text="Stop" Style="flex:auto" />
+            <RadzenButton Text="Pause" Style="flex:auto" />
+            <RadzenButton Text="Reset" Style="flex:auto" />
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
+            <RadzenStack Orientation="Orientation.Horizontal" Gap="1" Style="flex:auto">
+                <RadzenLabel Text="Actions:" />
+                <RadzenLabel Text="0" />
+            </RadzenStack>
+            <RadzenStack Orientation="Orientation.Horizontal" Gap="1" Style="flex:auto">
+                <RadzenLabel Text="Fails:" />
+                <RadzenLabel Text="0" />
+            </RadzenStack>
+            <RadzenStack Orientation="Orientation.Horizontal" Gap="1" Style="flex:auto">
+                <RadzenLabel Text="Running Time:" />
+                <RadzenLabel Text="0D00H00M00S" />
+            </RadzenStack>
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="1" Style="flex:auto">
+                <RadzenLabel Text="Goal" />
+                <RadzenNumeric Min="1" Max="100" TValue="double" />
+            </RadzenStack>
+            <RadzenStack Orientation="Orientation.Horizontal" Gap="1" Style="flex:auto">
+                <RadzenLabel Text="STP Left:" />
+                <RadzenLabel Text="0" />
+            </RadzenStack>
+            <RadzenStack Orientation="Orientation.Horizontal" Gap="1" Style="flex:auto">
+                <RadzenLabel Text="Time Left:" />
+                <RadzenLabel Text="0" />
+            </RadzenStack>
+        </RadzenRow>
+    </RadzenColumn>
+    <RadzenColumn Style="flex:4">
+        <RadzenTable>
+            <RadzenTableHeader>
+                <RadzenTableHeaderRow>
+                    <RadzenTableHeaderCell>Name</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell>Path</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell>ID</RadzenTableHeaderCell>
+                </RadzenTableHeaderRow>
+            </RadzenTableHeader>
+            <RadzenTableBody>
+                @foreach(PlayerModel playerModels in PlayersData.PlayerModels){
+                    <RadzenTableRow>
+                        <RadzenTableCell>@playerModels.PlayerName</RadzenTableCell>
+                        <RadzenTableCell>@playerModels.PlayerPath</RadzenTableCell>
+                        <RadzenTableCell>@playerModels.PlayerId</RadzenTableCell>
+                    </RadzenTableRow>
+                }
+            </RadzenTableBody>
+        </RadzenTable>
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    
+</RadzenRow>
 
 

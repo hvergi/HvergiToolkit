@@ -19,6 +19,8 @@ public class PlayerService
 
     private readonly FolderService FSInstance;
 
+    public event EventHandler? PlayersChanged;
+
     public PlayerService(FolderService folderService) { 
         
         FSInstance = folderService;
@@ -62,6 +64,7 @@ public class PlayerService
                 playerModels.Add(new PlayerModel(item));
             }   
         }
+        PlayersChanged?.Invoke(this, EventArgs.Empty);
         return playerModels;
     }
 

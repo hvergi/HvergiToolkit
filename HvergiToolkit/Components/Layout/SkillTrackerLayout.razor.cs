@@ -8,7 +8,6 @@ namespace HvergiToolkit.Components.Layout;
 
 public partial class SkillTrackerLayout
 {
-    string URI { get; set; } = "Test";
     protected override void OnInitialized()
     {
         titleservice.ChangeTitle("Skill Tracker");
