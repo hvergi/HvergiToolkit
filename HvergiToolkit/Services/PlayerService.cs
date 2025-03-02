@@ -15,6 +15,7 @@ public class PlayerService
     public List<PlayerModel> SteamPlayerModels { get; set; } = new List<PlayerModel>();
 
     public List<PlayerModel> PlayerModels { get { return Enumerable.Concat(WurmPlayerModels, SteamPlayerModels).ToList<PlayerModel>(); } }
+    public int PlayerCount { get { return WurmPlayerModels.Count + SteamPlayerModels.Count; } }
 
     private readonly FolderService FSInstance;
 
@@ -28,8 +29,22 @@ public class PlayerService
 
     private void OnFoldersChanged(object? sender, EventArgs e)
     {
-        if (FSInstance.IsWurmOnlinePathVaild) { WurmPlayerModels = GetPlayersInPath(FSInstance.WurmOnlinePath); }
-        if (FSInstance.IsWurmSteamPathVaild) { SteamPlayerModels = GetPlayersInPath(FSInstance.WurmSteamPath); }
+        if (FSInstance.IsWurmOnlinePathVaild)
+        {
+            WurmPlayerModels = GetPlayersInPath(FSInstance.WurmOnlinePath);
+        }
+        else
+        {
+            WurmPlayerModels = new List<PlayerModel>();
+        }
+        if (FSInstance.IsWurmSteamPathVaild)
+        {
+            SteamPlayerModels = GetPlayersInPath(FSInstance.WurmSteamPath);
+        }
+        else
+        {
+            SteamPlayerModels = new List<PlayerModel>();
+        }
     }
 
     private List<PlayerModel> GetPlayersInPath(string path)

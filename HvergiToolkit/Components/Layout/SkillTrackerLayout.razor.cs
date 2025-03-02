@@ -12,9 +12,6 @@ public partial class SkillTrackerLayout
     protected override void OnInitialized()
     {
         titleservice.ChangeTitle("Skill Tracker");
-        if(Navigation.Uri == Navigation.BaseUri)
-        {
-            Navigation.NavigateTo("/SkillTracker/");
-        }
+        
     }
 }

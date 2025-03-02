@@ -7,7 +7,7 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}"
              x:Class="HvergiToolkit.Pages.SkillTrackerPage">
 
-    <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
+    <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html" StartPath="/Apps/SkillTracker/">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type core:Components.SkillTrackerRoutes}" />
             <RootComponent ComponentType="{x:Type blazorweb:HeadOutlet}" Selector="#testlink-head::after" />
