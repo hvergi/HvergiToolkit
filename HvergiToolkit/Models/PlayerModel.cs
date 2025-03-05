@@ -20,7 +20,8 @@ namespace HvergiToolkit.Models
             PlayerLogFolder = Path.Combine(PlayerPath, "logs");
             PlayerName = Path.GetFileName(playerPath) ?? string.Empty;
         }
-
+        
+        //Wurm has 3 log file formats. Daily, Monthly, Single File. If not found return string.empty
         public string GetLogFilePath(HTConstants.LogTypes logType)
         {
             string logFilePath = Path.Combine(PlayerLogFolder, $"{HTConstants.LogNames[(int)logType]}.{DateTime.Now:yyyy}-{DateTime.Now:MM}-{DateTime.Now:dd}.txt");
