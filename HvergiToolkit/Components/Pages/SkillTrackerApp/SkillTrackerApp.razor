@@ -1,7 +1,10 @@
 ﻿
 @page "/Apps/SkillTracker"
 @using HvergiToolkit.Models
+@using Microsoft.AspNetCore.Components.WebView.Maui
+
 @inject PlayerService PlayersData
+@inject PlayerLogReaderService LogReader
 
 <RadzenRow>
 
@@ -10,7 +13,7 @@
     <RadzenColumn Style="flex:3">
         <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
             <RadzenLabel Text="Select Player" />
-            <RadzenDropDown TValue="string" Data="@skillTrackerList" Style="flex:1" />
+            <RadzenDropDown @bind-Value=@selectedPlayerModel Data="@PlayersData.PlayerModels" TextProperty="@nameof(PlayerModel.PlayerName)" Style="flex:1" />
             <RadzenLabel Text="Primary Skill" />
             <RadzenDropDown TValue="string" Data="@skillTrackerList" Style="flex:1" />
         </RadzenRow>
@@ -21,7 +24,7 @@
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
             <RadzenButton Text="Start" Style="flex:auto" Click="add"/>
-            <RadzenButton Text="Stop" Style="flex:auto" />
+            <RadzenButton Text="Stop" Style="flex:auto" Click="stop"/>
             <RadzenButton Text="Pause" Style="flex:auto" />
             <RadzenButton Text="Reset" Style="flex:auto" />
         </RadzenRow>
@@ -68,7 +71,7 @@
                     <RadzenTableRow>
                         <RadzenTableCell>@playerModels.PlayerName</RadzenTableCell>
                         <RadzenTableCell>@playerModels.PlayerPath</RadzenTableCell>
-                        <RadzenTableCell>@playerModels.PlayerId</RadzenTableCell>
+                        
                     </RadzenTableRow>
                 }
             </RadzenTableBody>

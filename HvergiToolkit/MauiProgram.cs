@@ -28,6 +28,7 @@ namespace HvergiToolkit
             builder.Services.AddScoped<TitleService>(); //Handles Changing the titleBar (scopped so new windows make thier own)
             builder.Services.AddSingleton<FolderService>();
             builder.Services.AddSingleton<PlayerService>();
+            builder.Services.AddSingleton<PlayerLogReaderService>();
 #if WINDOWS
             builder.Services.AddTransient<IDirectoryPicker, DirectoryPicker>();
 #endif
@@ -53,11 +54,12 @@ namespace HvergiToolkit
                             window.CenterOnScreen(720, 200);
                             window.SetIsAlwaysOnTop(true);
                         }
-
+                        
 
                         var manager = WinUIEx.WindowManager.Get(window);
                         manager.PersistenceId = "MainWindowPersistanceId"; // Remember window position and size across runs
                     });
+                    
                 });
             });
             MauiApp app = builder.Build();

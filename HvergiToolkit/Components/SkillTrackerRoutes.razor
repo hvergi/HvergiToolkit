@@ -1,6 +1,14 @@
-﻿<Router AppAssembly="@typeof(MauiProgram).Assembly">
+﻿@using HvergiToolkit.Pages
+
+<Router AppAssembly="@typeof(MauiProgram).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.SkillTrackerLayout)" />
+        <CascadingValue Value="@CurrentPage">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.SkillTrackerLayout)" />
+        </CascadingValue>
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
 </Router>
+@code {
+    [Parameter]
+    public SkillTrackerPage? CurrentPage{ get; set; }
+}
