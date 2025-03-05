@@ -10,7 +10,7 @@
 
 </RadzenRow>
 <RadzenRow>
-    <RadzenColumn Style="flex:3">
+    <RadzenColumn>
         <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
             <RadzenLabel Text="Select Player" />
             <RadzenDropDown @bind-Value=@selectedPlayerModel Data="@PlayersData.PlayerModels" TextProperty="@nameof(PlayerModel.PlayerName)" Style="flex:1" />
@@ -23,10 +23,10 @@
             <RadzenButton Text="Edit ActionSets" Style="flex:1"/>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
-            <RadzenButton Text="Start" Style="flex:auto" Click="add"/>
-            <RadzenButton Text="Stop" Style="flex:auto" Click="stop"/>
-            <RadzenButton Text="Pause" Style="flex:auto" />
-            <RadzenButton Text="Reset" Style="flex:auto" />
+            <RadzenButton Text="Start" Style="flex:auto" Click="Start" Disabled="@isRunning"/>
+            <RadzenButton Text="Stop" Style="flex:auto" Click="Stop" Disabled="@(!isRunning)"/>
+            <RadzenButton Text="@IsPausedText" Style="flex:auto" Click="Pause" Disabled="@(!isRunning)"/>
+            <RadzenButton Text="Reset" Style="flex:auto" Click="Reset" Disabled="@(!isPaused)"/>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
             <RadzenStack Orientation="Orientation.Horizontal" Gap="1" Style="flex:auto">
@@ -39,7 +39,7 @@
             </RadzenStack>
             <RadzenStack Orientation="Orientation.Horizontal" Gap="1" Style="flex:auto">
                 <RadzenLabel Text="Running Time:" />
-                <RadzenLabel Text="0D00H00M00S" />
+                <RadzenLabel Text="@stopwatch.Elapsed.TotalSeconds.ToString()" />
             </RadzenStack>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center" class="rz-mb-2">
@@ -57,20 +57,26 @@
             </RadzenStack>
         </RadzenRow>
     </RadzenColumn>
-    <RadzenColumn Style="flex:4">
+    <RadzenColumn Style="width:60%">
         <RadzenTable>
             <RadzenTableHeader>
                 <RadzenTableHeaderRow>
-                    <RadzenTableHeaderCell>Name</RadzenTableHeaderCell>
-                    <RadzenTableHeaderCell>Path</RadzenTableHeaderCell>
-                    <RadzenTableHeaderCell>ID</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:175px">Skill Name</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">Gained</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">Tick Percent</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">STP/H</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">Ticks</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">High</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">Starting</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">Current</RadzenTableHeaderCell>
+                    <RadzenTableHeaderCell Style="width:100px">STP Gained</RadzenTableHeaderCell>
                 </RadzenTableHeaderRow>
             </RadzenTableHeader>
             <RadzenTableBody>
-                @foreach(PlayerModel playerModels in PlayersData.PlayerModels){
+                @foreach(KeyValuePair<string,double> kvp in skillTicks){
                     <RadzenTableRow>
-                        <RadzenTableCell>@playerModels.PlayerName</RadzenTableCell>
-                        <RadzenTableCell>@playerModels.PlayerPath</RadzenTableCell>
+                        <RadzenTableCell>@kvp.Key</RadzenTableCell>
+                        <RadzenTableCell>@kvp.Value</RadzenTableCell>
                         
                     </RadzenTableRow>
                 }

@@ -47,13 +47,14 @@ public class PlayerLogReaderService
 
     public void AddLogFile(string filename, Action<LogReadEventArgs> action)
     {
+        if(filename == string.Empty) { return; }
         while (isReadingFile) { }
         if (!_files.ContainsKey(filename))
         {
             using(FileStream fs = new FileStream(filename,FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 
-                _files.Add(filename, new LogFile { FilePath=filename, LastReadIndex=fs.Length });
+                _files.Add(filename, new LogFile { FilePath=filename, LastReadIndex=0 });
             }
         }
         if (!subscribers.ContainsKey(filename)) {
@@ -65,6 +66,7 @@ public class PlayerLogReaderService
     }
     public void RemoveLogFile(string filename, Action<LogReadEventArgs> action)
     {
+        if (filename == string.Empty) { return; }
         while (isReadingFile) { }
         if (!subscribers.ContainsKey(filename)) { return; }
         subscribers[filename].Remove(action);
