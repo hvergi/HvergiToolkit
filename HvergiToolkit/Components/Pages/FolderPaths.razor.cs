@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 using Microsoft.Maui.Storage;
 using HvergiToolkit.Services;
+using System.Diagnostics;
 
 namespace HvergiToolkit.Components.Pages;
 
@@ -35,4 +36,18 @@ public partial class FolderPaths
         StateHasChanged();
     }
 
+    void OpenSteamFolder()
+    {
+        if (Directory.Exists(Folders.WurmSteamPath))
+        {
+            Process.Start("explorer.exe",Folders.WurmSteamPath);
+        }
+    }
+    void OpenOnlineFolder()
+    {
+        if (Directory.Exists(Folders.WurmOnlinePath))
+        {
+            Process.Start("explorer.exe", Folders.WurmOnlinePath);
+        }
+    }
 }
